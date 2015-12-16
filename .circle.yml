@@ -1,3 +1,5 @@
 test:
+  before:
+    -bundle exec rake db:create:all
   post:
     -bundle exec rubocop
