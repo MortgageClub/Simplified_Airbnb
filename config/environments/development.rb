@@ -38,12 +38,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.mandrillapp.com",
+    address: "in-v3.mailjet.com",
     port: 587,
     enable_starttls_auto: true,
-    user_name: "tang@mortgageclub.co",
-    password: "NC09Iv4kBPR7hMGGQWNa6w",
-    authentication: "login"
+    user_name: ENV["MAILJET_USERNAME"],
+    password: ENV["MAILJET_PASSWORD"],
+    authentication: "plain"
   }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
