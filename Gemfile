@@ -13,6 +13,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'toastr-rails'
+gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
