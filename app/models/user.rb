@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   validates :fullname, presence: true, length: {maximum: 50}
 
+  has_many :rooms
+
   def self.from_omniauth(auth)
     user = User.find_by_email(auth.info.email) || User.find_by_provider_and_uid(auth.provider, auth.uid)
     user = create_user_from_auth(auth) unless user
