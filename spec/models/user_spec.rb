@@ -39,12 +39,12 @@ describe User do
   it "is invalid with a duplicate email address" do
     User.create(
       fullname: "test",
-      email: "test@gmail.com",
+      email: "nvtang92@gmail.com",
       password: "12345678")
     user = User.new(
       fullname: "test",
-      email: "test@gmail.com",
-      password: "1234578")
+      email: "nvtang92@gmail.com",
+      password: "12345678")
     user.valid?
     expect(user.errors[:email]).to include("has already been taken")
   end
