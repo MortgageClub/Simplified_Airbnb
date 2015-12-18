@@ -6,7 +6,7 @@ FactoryGirl.define do
     room_type "MyString"
     accommodate 1
     bed_room 1
-    bath_room "MyString"
+    bath_room 1
     integer "MyString"
     listing_name "MyString"
     summary "MyText"
