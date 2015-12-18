@@ -6,7 +6,7 @@ class RoomsController < ApplicationController
   end
 
   def show
-    set_room
+    @photos = @room.photos
   end
 
   def new
@@ -15,22 +15,23 @@ class RoomsController < ApplicationController
 
   def create
     @room = current_user.rooms.build(room_params)
-    if @room.save
-      redirect_to @room, notice: "Saved..."
-    else
-      render :new
-    end
+    return render :new unless @room.save
+
+    insert_images_to_room if params[:images]
+    @photos = @room.photos
+    redirect_to edit_room_path(@room), notice: "Saved..."
   end
 
   def edit
+    return redirect_to root_path, notice: "You don't have permission." unless current_user.id == @room.user.id
+    @photos = @room.photos
   end
 
   def update
-    if @room.update(room_params)
-      redirect_to @room, notice: "Updated..."
-    else
-      render :edit
-    end
+    return render :edit unless @room.update(room_params)
+
+    insert_images_to_room if params[:images]
+    redirect_to edit_room_path(@room), notice: "Updated..."
   end
 
   private
@@ -39,21 +40,15 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
   end
 
+  def insert_images_to_room
+    params[:images].each { |image| @room.photos.create(image: image) }
+  end
+
   def room_params
-    params.require(:room).permit(:home_type,
-      :room_type,
-      :accommodate,
-      :bed_room,
-      :bath_room,
-      :listing_name,
-      :summary,
-      :address,
-      :is_tv,
-      :is_kitchen,
-      :is_air,
-      :is_heating,
-      :is_internet,
-      :price,
-      :active)
+    params.require(:room).permit(:home_type, :room_type,
+      :accommodate, :bed_room, :bath_room,
+      :listing_name, :summary, :address, :is_tv,
+      :is_kitchen, :is_air, :is_heating, :is_internet,
+      :price, :active, :images)
   end
 end
