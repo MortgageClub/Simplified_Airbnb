@@ -24,13 +24,14 @@ class RoomsController < ApplicationController
 
   def edit
     return redirect_to root_path, notice: "You don't have permission." unless current_user.id == @room.user.id
-    @photo = @room.photos
+    @photos = @room.photos
   end
 
   def update
     return render :edit unless @room.update(room_params)
 
     insert_images_to_room if params[:images]
+    byebug
     redirect_to edit_room_path(@room), notice: "Updated..."
   end
 
@@ -49,6 +50,6 @@ class RoomsController < ApplicationController
       :accommodate, :bed_room, :bath_room,
       :listing_name, :summary, :address, :is_tv,
       :is_kitchen, :is_air, :is_heating, :is_internet,
-      :price, :active)
+      :price, :active, :images)
   end
 end
