@@ -114,5 +114,39 @@
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div id="map">
+
+        </div>
+        <style type="text/css">
+          #map {
+            width: 500px;
+            height: 400px;
+          }
+        </style>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+        <script type="text/javascript">
+          function initalize(){
+            var mapCanvas = document.getElementById('map');
+            var mapOptions = {
+              center: new google.maps.LatLng(<%= @room.latitude%>, <%= @room.longitude %>),
+              zoom: 14,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+
+            var marker = new google.maps.Marker ({
+              position: new google.maps.LatLng(<%= @room.latitude%>, <%= @room.longitude %>),
+              title: '<%= @room.listing_name%>'
+            });
+
+            marker.setMap(map);
+          }
+          google.maps.event.addDomListener(window, 'load', initalize);
+        </script>
+      </div>
+    </div>
   </div>
 </div>
