@@ -13,7 +13,7 @@ class ReservationsController < ApplicationController
     end_date = Date.parse(params[:end_date])
 
     output = {
-      conflict: is_conflict(start_date, end_date)
+      conflict: conflict?(start_date, end_date)
     }
     render json: output
   end
@@ -26,7 +26,7 @@ class ReservationsController < ApplicationController
 
   private
 
-  def is_conflict(start_date, end_date)
+  def conflict?(start_date, end_date)
     room = Room.find(params[:room_id])
 
     check = room.reservations.where("? < start_date AND end_date < ?", start_date, end_date)
