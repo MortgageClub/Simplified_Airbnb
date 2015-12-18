@@ -1,4 +1,4 @@
 require 'rails_helper'
 
-describe Room do
+describe Photo do
 end
