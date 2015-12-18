@@ -15,38 +15,23 @@ class RoomsController < ApplicationController
 
   def create
     @room = current_user.rooms.build(room_params)
-    if @room.save
-      if params[:images]
-        params[:images].each do |image|
-          @room.photos.create(image: image)
-        end
-      end
-      @photos = @room.photos
-      redirect_to edit_room_path(@room), notice: "Saved..."
-    else
-      render :new
-    end
+    return render :new unless @room.save
+
+    insert_images_to_room if params[:images]
+    @photos = @room.photos
+    redirect_to edit_room_path(@room), notice: "Saved..."
   end
 
   def edit
-    if current_user.id == @room.user.id
-      @photo = @room.photos
-    else
-      redirect_to root_path, notice: "You don't have permission."
-    end
+    return redirect_to root_path, notice: "You don't have permission." unless current_user.id == @room.user.id
+    @photo = @room.photos
   end
 
   def update
-    if @room.update(room_params)
-      f params[:images]
-        params[:images].each do |image|
-          @room.photos.create(image: image)
-        end
-      end
-      redirect_to edit_room_path(@room), notice: "Updated..."
-    else
-      render :edit
-    end
+    return render :edit unless @room.update(room_params)
+
+    insert_images_to_room if params[:images]
+    redirect_to edit_room_path(@room), notice: "Updated..."
   end
 
   private
@@ -55,21 +40,15 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
   end
 
+  def insert_images_to_room
+    params[:images].each { |image| @room.photos.create(image: image) }
+  end
+
   def room_params
-    params.require(:room).permit(:home_type,
-      :room_type,
-      :accommodate,
-      :bed_room,
-      :bath_room,
-      :listing_name,
-      :summary,
-      :address,
-      :is_tv,
-      :is_kitchen,
-      :is_air,
-      :is_heating,
-      :is_internet,
-      :price,
-      :active)
+    params.require(:room).permit(:home_type, :room_type,
+      :accommodate, :bed_room, :bath_room,
+      :listing_name, :summary, :address, :is_tv,
+      :is_kitchen, :is_air, :is_heating, :is_internet,
+      :price, :active)
   end
 end
