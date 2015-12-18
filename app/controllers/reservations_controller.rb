@@ -3,7 +3,7 @@ class ReservationsController < ApplicationController
 
   def preload
     room = Room.find(params[:room_id])
-    today = Date.today
+    today = Time.zone.today
     reservations = room.reservations.where("start_date >= ? OR end_date >= ?", today, today)
     render json: reservations
   end
