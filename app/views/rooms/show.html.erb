@@ -2,7 +2,7 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-md-12">
-        <%= image_tag @photos[0].image.url, class: "image-responsive" if @photos.length > 0 %>
+        <%= image_tag @photos.first.image.url, class: "image-responsive" unless @photos.empty? %>
       </div>
     </div>
     <br/>
@@ -96,7 +96,7 @@
           <div class="carousel-inner" role"listbox">
             <% if @photos %>
               <% @photos.each do |photo| %>
-                <div class="item <%= 'active' if photo.id == @photos[0].id %>">
+                <div class="item <%= 'active' if photo.id == @photos.first.id %>">
                 <%= image_tag photo.image.url %>
                 </div>
               <% end %>
@@ -154,7 +154,7 @@
         <div class="col-md-4">
           <div class="panel panel-default">
             <div class="panel panel-heading preview">
-              <%= image_tag room.photos[0].image.url(:medium) %>
+              <%= image_tag room.photos.first.image.url(:medium) %>
             </div>
             <div class="panel-body">
               <%= link_to room.listing_name, room %> <br/>
