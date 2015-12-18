@@ -219,8 +219,20 @@ input[type="checkbox"]:checked:before {
   text-decoration: line-through;
 }
 
-.reservation-table {
+.reservation-table td{
   width: 100%;
   border: 1px solid #dce0e0;
   padding: 10px;
+}
+
+.wide {
+  width: 100%;
+}
+
+.price_tag {
+  background-color: #606567;
+  font-size:20px;
+  color:#fff;
+  padding: 10px;
+  margin-bottom: 10px;
 }
