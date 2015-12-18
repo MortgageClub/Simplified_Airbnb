@@ -9,32 +9,10 @@ describe User do
     expect(user).to be_valid
   end
 
-  it "is invalid without a fullname" do
-    user = User.new(fullname: nil)
-    user.valid?
-    expect(user.errors[:fullname]).to include("can't be blank")
-  end
-
-  it "is invalid without a email address" do
-    user = User.new(email: nil)
-    user.valid?
-    expect(user.errors[:email]).to include("can't be blank")
-  end
-
-  it "is invalid without a password" do
-    user = User.new(password: nil)
-    user.valid?
-    expect(user.errors[:password]).to include("can't be blank")
-  end
-
-  it "is invalid with a password length less than 8" do
-    user = User.new(
-      fullname: "test",
-      email: "test1@gmail.com",
-      password: "123457")
-    user.valid?
-    expect(user.errors[:password]).to include("is too short (minimum is 8 characters)")
-  end
+  it { should validate_presence_of(:fullname) }
+  it { should validate_presence_of(:email) }
+  it { should validate_presence_of(:password) }
+  it { should validate_length_of(:password).is_at_least(8) }
 
   it "is invalid with a duplicate email address" do
     User.create(
