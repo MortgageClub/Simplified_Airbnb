@@ -31,7 +31,6 @@ class RoomsController < ApplicationController
     return render :edit unless @room.update(room_params)
 
     insert_images_to_room if params[:images]
-    byebug
     redirect_to edit_room_path(@room), notice: "Updated..."
   end
 
