@@ -24,6 +24,10 @@ class ReservationsController < ApplicationController
     redirect_to @reservation.room, notice: "Your reservation has been created..."
   end
 
+  def your_trips
+    @trips = current_user.reservations
+  end
+
   private
 
   def conflict?(start_date, end_date)
