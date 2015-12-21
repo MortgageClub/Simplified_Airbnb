@@ -2,7 +2,9 @@ class Message < ActiveRecord::Base
   belongs_to :conversation
   belongs_to :user
 
-  validate_presence_of :content, :conversation_id, :user_id
+  validates :content, presence: true
+  validates :conversation_id, presence: true
+  validates :user_id, presence: true
 
   def message_time
     created_at.strftime("%v")

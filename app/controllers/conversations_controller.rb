@@ -9,7 +9,7 @@ class ConversationsController < ApplicationController
   def create
     conversations = Conversation.between(params[:sender_id], params[:recipient_id])
 
-    @conversation = conversations.present? ? conversations.first : Conversation.crate(conversation_params)
+    @conversation = conversations.present? ? conversations.first : Conversation.create(conversation_params)
     redirect_to conversation_messages_path(@conversation)
   end
 
