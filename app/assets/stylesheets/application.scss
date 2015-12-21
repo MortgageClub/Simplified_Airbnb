@@ -242,3 +242,17 @@ input[type="checkbox"]:checked:before {
   width: 100px;
   height: 75px;
 }
+
+.conversation {
+  color: #7f7f7f;
+  padding: 10px;
+}
+
+.conversation:hover, .conversation:focus {
+  background-color: #f4f4f5;
+}
+
+.row-space-2 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

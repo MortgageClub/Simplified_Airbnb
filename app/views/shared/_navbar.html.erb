@@ -40,10 +40,14 @@
                 </ul>
               </li>
               <li>
-                <a href="#"><i class="fa fa-envelope-o"></i>Messages</a>
+                <%= link_to conversations_path do %>
+                  <i class="fa fa-envelope-o"></i>Messages
+                <% end %>
               </li>
               <li>
-                <a href="#"><i class="fa fa-home fa-lg"></i>Becomes a Host</a>
+                <%= link_to new_room_path do %>
+                  <i class="fa fa-home fa-lg"></i>Becomes a Host
+                <% end %>
               </li>
             <% end %>
           </ul>
