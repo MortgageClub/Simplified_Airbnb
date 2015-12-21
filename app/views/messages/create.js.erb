@@ -1,0 +1,11 @@
+<% if @message.errors.empty? %>
+  <% publish_to conversation_messages_path(@conversation) do %>
+    $("#chat").html("<%= j render 'messages' %>");
+  <% end %>
+<% else %>
+  var errors = "";
+  <% @message.errors.full_messages.each do |message| %>
+    errors += $("<div/>").html("<%= message %>").text() + " \n";
+  <% end %>
+  toastr.error(errors)
+<% end %>
