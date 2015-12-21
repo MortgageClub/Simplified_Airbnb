@@ -17,6 +17,8 @@ gem 'omniauth-facebook'
 gem 'paperclip'
 gem 'geocoder'
 gem 'jquery-ui-rails'
+gem 'private_pub'
+gem 'thin'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do

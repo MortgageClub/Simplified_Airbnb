@@ -14,7 +14,7 @@
       </div>
       <div class="panel-body">
         <div class="container">
-          <%= form_for [@conversation, @conversation.messages.new ] do |f| %>
+          <%= form_for [@conversation, @conversation.messages.new], remote: true do |f| %>
             <div class="form-group">
               <%= f.text_area :content, id: "new_message", placeholder: "Add a personal message", class: "form-control" %>
             </div>
@@ -31,3 +31,4 @@
     </div>
   </div>
 </div>
+<%= subscribe_to conversation_messages_path(@conversation) %>

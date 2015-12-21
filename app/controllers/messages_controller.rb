@@ -11,8 +11,8 @@ class MessagesController < ApplicationController
   def create
     @message = @conversation.messages.new(message_params)
     @messages = @conversation.messages.order("created_at DESC")
-
-    redirect_to conversation_messages_path(@conversation) if @message.save
+    @message.save
+    respond_to :js
   end
 
   private
