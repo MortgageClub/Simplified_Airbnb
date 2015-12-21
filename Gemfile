@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 ruby '2.2.2'
 gem 'rubocop'
 gem 'rails', '4.2.5'
-gem 'sqlite3'
 gem 'sass-rails', '>= 3.2'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'uglifier', '>= 1.3.0'
@@ -24,6 +23,10 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '3.1.0'
   gem 'factory_girl_rails', '4.4.1'
+  gem 'sqlite3'
+end
+group :production do
+  gem 'pg'
 end
 group :test do
   gem 'faker', '1.4.3'
