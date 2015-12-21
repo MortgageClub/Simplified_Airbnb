@@ -25,7 +25,7 @@
             </div>
             <div class="col-md-6">
               <%= link_to room_path(trip.room) do %>
-                <%= image_tag trip.room.photos.first.image.url(:thumb) unless trip.room.photos.empty? %>
+                <%= image_tag trip.room.show_image_first(:thumb), class: "thumb" %>
               <% end %>
             </div>
             <div class="col-md-2">

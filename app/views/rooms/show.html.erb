@@ -155,7 +155,7 @@
         <div class="col-md-4">
           <div class="panel panel-default">
             <div class="panel panel-heading preview">
-              <%= image_tag room.photos.first.image.url(:medium) %>
+              <%= image_tag room.show_image_first(:medium) %>
             </div>
             <div class="panel-body">
               <%= link_to room.listing_name, room %> <br/>
