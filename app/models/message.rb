@@ -4,7 +4,7 @@ class Message < ActiveRecord::Base
 
   validate_presence_of :content, :conversation_id, :user_id
 
-  def manage_time
+  def message_time
     created_at.strftime("%v")
   end
 end
