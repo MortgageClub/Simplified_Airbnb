@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :message do
-    content "MyText"
-    conversation nil
-    user nil
+    content Faker::Lorem.sentence
+    conversation
+    user
   end
 end
