@@ -16,8 +16,8 @@ describe User do
 
   context "when duplicated email" do
     it "raises a duplicate error" do
-      FactoryGirl.create(:user, email: "tang@mortgageclub.co")
-      temp_user = FactoryGirl.build(:user, email: "tang@mortgageclub.co")
+      FactoryGirl.create(:user, email: "tang@tang-airbnb.com")
+      temp_user = FactoryGirl.build(:user, email: "tang@tang-airbnb.com")
       temp_user.valid?
       expect(temp_user.errors[:email]).to include("has already been taken")
     end

@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :reservation do
-    user nil
-    room nil
+    user
+    room
     start_date "2015-12-18 16:30:36"
     end_date "2015-12-18 16:30:36"
     price 1
