@@ -81,9 +81,7 @@ describe RoomsController do
   describe "POST #create" do
     context "with valid attributes" do
       it "saves the new room in the database" do
-        expect{
-          post :create, room: attributes_for(:room)
-        }.to change(Room, :count).by(1)
+        expect { post :create, room: attributes_for(:room) }.to change(Room, :count).by(1)
       end
 
       it "calls the #insert_images_to_room" do
@@ -104,9 +102,7 @@ describe RoomsController do
 
     context "with invalid attributes" do
       it "does not save the new room in the database" do
-        expect{
-          post :create, room: attributes_for(:invalid_room)
-        }.to_not change(Room, :count)
+        expect { post :create, room: attributes_for(:invalid_room) }.to_not change(Room, :count)
       end
 
       it "re-renders the :new template" do
