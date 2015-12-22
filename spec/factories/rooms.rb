@@ -7,9 +7,9 @@ FactoryGirl.define do
     accommodate 1
     bed_room 1
     bath_room 1
-    listing_name Faker::Lorem.characters(50)
-    summary Faker::Lorem.characters(500)
-    address Faker::Address.street_address
+    listing_name { Faker::Lorem.characters(50) }
+    summary { Faker::Lorem.characters(500) }
+    address { Faker::Address.street_address }
     is_tv true
     is_kitchen true
     is_air false

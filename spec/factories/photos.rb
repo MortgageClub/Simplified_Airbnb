@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :photo do
     room
-    image Faker::Avatar.image
+    image { Faker::Avatar.image }
   end
 end

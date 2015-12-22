@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :message do
-    content Faker::Lorem.sentence
+    content { Faker::Lorem.sentence }
     conversation
     user
   end
