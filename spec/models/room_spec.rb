@@ -20,6 +20,7 @@ describe Room do
 
   describe "#show_image_first" do
     let(:room) { FactoryGirl.build(:room) }
+
     it "returns first image url" do
       FactoryGirl.create(:photo, room: room, image: "https://robohash.org/sitsequiquia.png?size=300x300")
       expect(room.show_image_first(:medium)).to include("sitsequiquia.png")
