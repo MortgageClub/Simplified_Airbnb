@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'spec_helper'
 
 describe Room do
   it { should validate_presence_of(:home_type) }
@@ -16,4 +17,16 @@ describe Room do
   it { should belong_to(:user) }
   it { should have_many(:photos) }
   it { should have_many(:reservations) }
+
+  describe "#show_image_first" do
+    let(:room) { FactoryGirl.build(:room) }
+    it "return first image url" do
+      FactoryGirl.create(:photo, room: room, image: "https://robohash.org/sitsequiquia.png?size=300x300")
+      expect(room.show_image_first(:medium)).to include("sitsequiquia.png")
+    end
+
+    it "return default image when photos nil" do
+      expect(room.show_image_first(:medium)).to eq("/system/photos/default.jpg")
+    end
+  end
 end
