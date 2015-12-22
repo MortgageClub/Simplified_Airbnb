@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_conversation
   before_action :authenticate_conversation!, only: :index
+  before_action :set_conversation
 
   def index
     @other = sender? ? @conversation.recipient : @conversation.sender

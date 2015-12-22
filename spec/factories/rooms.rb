@@ -18,5 +18,9 @@ FactoryGirl.define do
     price 100
     active false
     user
+
+    factory :invalid_room do
+      price nil
+    end
   end
 end
