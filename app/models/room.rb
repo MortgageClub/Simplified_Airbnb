@@ -22,6 +22,6 @@ class Room < ActiveRecord::Base
   end
 
   def average_rating
-    reviews.empty? ? 0 : reviews.average(:star).round(2)
+    reviews.count == 0 ? 0 : reviews.average(:star).round(2)
   end
 end

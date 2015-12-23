@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :review do
-    comment "MyText"
+    comment { Faker::Lorem.sentence }
     star 1
-    room nil
-    user nil
+    room
+    user
   end
 end

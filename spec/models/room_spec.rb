@@ -17,6 +17,7 @@ describe Room do
   it { should belong_to(:user) }
   it { should have_many(:photos) }
   it { should have_many(:reservations) }
+  it { should have_many(:reviews) }
 
   describe "#show_image_first" do
     let(:room) { FactoryGirl.build(:room) }
@@ -28,6 +29,20 @@ describe Room do
 
     it "returns default image when photos nil" do
       expect(room.show_image_first(:medium)).to eq("/system/photos/default.jpg")
+    end
+  end
+
+  describe "#average_rating" do
+    let(:room) { FactoryGirl.create(:room) }
+
+    it "returns the 0 with no review" do
+      expect(room.average_rating).to eq(0)
+    end
+
+    it "returns the avarage rating with reviews" do
+      FactoryGirl.create(:review, room: room, star: 4)
+      FactoryGirl.create(:review, room: room, star: 5)
+      expect(room.average_rating).to eq(4.5)
     end
   end
 end

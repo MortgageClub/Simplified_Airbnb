@@ -13,8 +13,9 @@ describe User do
   it { should have_many(:rooms) }
   it { should have_many(:reservations) }
   it { should have_many(:messages) }
+  it { should have_many(:reviews) }
 
-  context "when email duplicate" do
+  context "when email duplicates" do
     it "raises a duplicate error" do
       FactoryGirl.create(:user, email: "tang@tang-airbnb.com")
       temp_user = FactoryGirl.build(:user, email: "tang@tang-airbnb.com")
