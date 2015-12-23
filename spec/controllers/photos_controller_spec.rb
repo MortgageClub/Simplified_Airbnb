@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'spec_helper'
 
 describe PhotosController do
-  describe "DELETE #destroy" do
+  describe "DELETE /destroy" do
     let(:room) { FactoryGirl.create(:room) }
     let!(:photo) { FactoryGirl.create(:photo, image: "https://robohash.org/sitsequiquia.png", room: room) }
 

@@ -13,7 +13,7 @@ describe RoomsController do
   it { should use_before_action(:authenticate_user!) }
   it { should use_before_action(:set_room) }
 
-  describe "GET #index" do
+  describe "GET /sindex" do
     it "assigns the requested rooms to @rooms" do
       get :index
       expect(assigns(:rooms)).to eq(user.rooms)
@@ -25,7 +25,7 @@ describe RoomsController do
     end
   end
 
-  describe "GET #show" do
+  describe "GET /show" do
     it "assigns the requested room to @room" do
       get :show, id: room
       expect(assigns(:room)).to eq(room)
@@ -42,7 +42,7 @@ describe RoomsController do
     end
   end
 
-  describe "GET #new" do
+  describe "GET /new" do
     it "assigns the new room to @room" do
       get :new
       expect(assigns(:room)).to be_a(Room)
@@ -54,7 +54,7 @@ describe RoomsController do
     end
   end
 
-  describe "GET #edit" do
+  describe "GET /edit" do
     let(:room_temp) { FactoryGirl.create(:room) }
 
     it "assigns the requested room to @room" do
@@ -78,7 +78,7 @@ describe RoomsController do
     end
   end
 
-  describe "POST #create" do
+  describe "POST /create" do
     context "with valid attributes" do
       it "saves the new room in the database" do
         expect { post :create, room: attributes_for(:room) }.to change(Room, :count).by(1)
@@ -111,7 +111,7 @@ describe RoomsController do
       end
     end
   end
-  describe "PATCH #update" do
+  describe "PATCH /update" do
     context "with valid attributes" do
       it "locates the requested room" do
         patch :update, id: room, room: attributes_for(:room)
