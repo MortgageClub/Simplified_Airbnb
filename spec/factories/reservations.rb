@@ -5,7 +5,7 @@ FactoryGirl.define do
     user
     room
     start_date "2015-12-18 16:30:36"
-    end_date "2015-12-18 16:30:36"
+    end_date "2015-12-19 16:30:36"
     price 1
     total 1
   end
