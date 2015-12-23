@@ -12,7 +12,7 @@ describe ReservationsController do
 
   it { should use_before_action(:authenticate_user!) }
 
-  describe "GET /your_trips" do
+  describe "GET #your_trips" do
     it "assigns the reservations of current user to @reservations" do
       get :your_trips
       expect(assigns(:trips)).to eq(user.reservations)
@@ -24,7 +24,7 @@ describe ReservationsController do
     end
   end
 
-  describe "GET /your_reservations" do
+  describe "GET #your_reservations" do
     it "assigns the rooms of current user to @rooms" do
       get :your_reservations
       expect(assigns(:rooms)).to eq(user.rooms)
@@ -36,11 +36,13 @@ describe ReservationsController do
     end
   end
 
-  describe "POST /create" do
+  describe "POST #create" do
     let(:room) { FactoryGirl.create(:room, user: user) }
 
     it "saves the new reservation in the database" do
-      expect { post :create, room_id: room, reservation: attributes_for(:reservation, room_id: room.id, price: 100) }.to change(Reservation, :count).by(1)
+      expect do
+        post :create, room_id: room, reservation: attributes_for(:reservation, room_id: room.id, price: 100)
+      end.to change(Reservation, :count).by(1)
     end
 
     it "assigns the new reservation to @reservation" do
@@ -54,14 +56,14 @@ describe ReservationsController do
     end
   end
 
-  describe "GET /preload" do
+  describe "GET #preload" do
     it "gets all reservations unavailable next days" do
       get :preload, room_id: room.id
       expect(response.body).to eq([reservation].to_json)
     end
   end
 
-  describe "GET /preview" do
+  describe "GET #preview" do
     it "show conflict if a new reservation has a reservation between start_date and end_date" do
       get :preview, room_id: room.id, start_date: Time.zone.now, end_date: Time.zone.now + 16.days
       expect(JSON.parse(response.body)["conflict"]).to eq true

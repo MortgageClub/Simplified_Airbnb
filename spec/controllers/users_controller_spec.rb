@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'spec_helper'
 
 describe UsersController do
-  describe "GET /show" do
+  describe "GET #show" do
     let(:user) { FactoryGirl.create(:user) }
     let(:rooms) { FactoryGirl.create_list(:room, 3, user: user) }
 

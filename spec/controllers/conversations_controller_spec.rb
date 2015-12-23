@@ -10,7 +10,7 @@ describe ConversationsController do
 
   it { should use_before_action(:authenticate_user!) }
 
-  describe "GET /index" do
+  describe "GET #index" do
     FactoryGirl.create_list(:user, 3)
 
     it "assigns the requested users to @users" do
@@ -29,7 +29,7 @@ describe ConversationsController do
     end
   end
 
-  describe "POST /create" do
+  describe "POST #create" do
     let!(:recipient) { FactoryGirl.create(:user) }
 
     context "with no conversation between user and recipient" do

@@ -16,7 +16,7 @@ describe MessagesController do
   it { should use_before_action(:set_conversation) }
   it { should use_before_action(:authenticate_conversation!) }
 
-  describe "GET /index" do
+  describe "GET #index" do
     it "assigns the requested conversation to @conversation" do
       get :index, conversation_id: conversation.id
       expect(assigns(:conversation)).to eq(conversation)
@@ -47,7 +47,7 @@ describe MessagesController do
     end
   end
 
-  describe "POST /create" do
+  describe "POST #create" do
     it "assigns the requested conversation to @conversation" do
       post :create, conversation_id: conversation.id, message: attributes_for(:message, conversation_id: conversation.id, user_id: user.id), format: :js
       expect(assigns(:conversation)).to eq(conversation)
