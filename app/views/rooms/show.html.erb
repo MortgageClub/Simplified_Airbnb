@@ -115,7 +115,23 @@
         </div>
       </div>
     </div>
+    <br/>
     <hr/>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Reviews <%= @room.average_rating %> (<%= @reviews.count %>)</h3>
+        <div class="container">
+          <div>
+            <%= render "reviews/form" if @booked && !@has_review %>
+          </div>
+          <div>
+            <%= render "reviews/list" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-md-12">
         <div id="map">

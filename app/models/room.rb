@@ -21,7 +21,7 @@ class Room < ActiveRecord::Base
     photos.empty? ? "/system/photos/default.jpg" : photos.first.image.url(type)
   end
 
-  def avarage_rating
+  def average_rating
     reviews.empty? ? 0 : reviews.average(:star).round(2)
   end
 end
