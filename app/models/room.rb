@@ -14,6 +14,7 @@ class Room < ActiveRecord::Base
   validates :listing_name, presence: true, length: {maximum: 50}
   validates :summary, presence: true, length: {maximum: 500}
   validates :address, presence: true
+  validates :price, presence: true
 
   def show_image_first(type)
     photos.empty? ? "/system/photos/default.jpg" : photos.first.image.url(type)
