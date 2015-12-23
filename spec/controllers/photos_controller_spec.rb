@@ -6,7 +6,7 @@ describe PhotosController do
     let(:room) { FactoryGirl.create(:room) }
     let!(:photo) { FactoryGirl.create(:photo, image: "https://robohash.org/sitsequiquia.png", room: room) }
 
-    it "deletes the photo" do
+    it "deletes the photo from database" do
       expect { delete :destroy, id: photo, format: :js }.to change(Photo, :count).by(-1)
     end
 
