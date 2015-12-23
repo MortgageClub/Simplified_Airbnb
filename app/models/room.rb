@@ -2,6 +2,7 @@ class Room < ActiveRecord::Base
   belongs_to :user
   has_many :photos
   has_many :reservations, dependent: :destroy
+  has_many :reviews
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
@@ -18,5 +19,9 @@ class Room < ActiveRecord::Base
 
   def show_image_first(type)
     photos.empty? ? "/system/photos/default.jpg" : photos.first.image.url(type)
+  end
+
+  def avarage_rating
+    reviews.empty? ? 0 : reviews.average(:star).round(2)
   end
 end
