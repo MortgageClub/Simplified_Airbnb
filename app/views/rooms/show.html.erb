@@ -115,7 +115,23 @@
         </div>
       </div>
     </div>
+    <br/>
     <hr/>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Reviews <span id="average_rating"></span> (<%= @reviews.count %>)</h3>
+        <div class="container">
+          <div>
+            <%= render "reviews/form" if @booked && !@has_review %>
+          </div>
+          <div>
+            <%= render "reviews/list" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-md-12">
         <div id="map">
@@ -167,3 +183,11 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $("#average_rating").raty({
+    path: "/system/images",
+    readOnly: true,
+    score: <%= @room.average_rating %>
+  });
+</script>

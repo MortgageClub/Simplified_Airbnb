@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :rooms, dependent: :destroy
   has_many :reservations
   has_many :messages
+  has_many :reviews
 
   def self.from_omniauth(auth)
     user = User.find_by_email(auth.info.email) || User.find_by_provider_and_uid(auth.provider, auth.uid)
