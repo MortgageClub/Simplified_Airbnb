@@ -21,7 +21,7 @@ class PagesController < ApplicationController
   end
 
   def assign_room_address
-    if session[:loc_search] && session[:loc_search] != ""
+    if session[:loc_search].present?
       @rooms_address = Room.where(active: true).near(session[:loc_search], 5, order: "distance")
     else
       @rooms_address = Room.where(active: true).all
@@ -49,6 +49,6 @@ class PagesController < ApplicationController
   end
 
   def params_valid?
-    params[:start_date] && params[:end_date] && !params[:start_date].empty? && !params[:end_date].empty?
+    params[:start_date].present? && params[:end_date].present?
   end
 end
