@@ -256,3 +256,54 @@ input[type="checkbox"]:checked:before {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+#wrapper {
+  width: 960px;
+  margin: 0 auto;
+}
+
+#sidebar {
+  float: right;
+  width: 340px;
+}
+
+#sidebar #widget {
+  width: 340px;
+  height: 600px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+#article {
+  width: 560px;
+}
+
+.discovery-card {
+  background-size: cover;
+  background-position: center;
+  height: 326px;
+}
+
+.va-container {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.va-middle {
+  color: #fff;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+#ho-chi-minh {
+  background-image: url(asset-path('Ho_Chi_Minh.jpg'))
+}
+
+#ha-noi {
+  background-image: url(asset-path('Ha_Noi.jpg'))
+}
+
+#da-nang {
+  background-image: url(asset-path('Da_Nang.jpg'))
+}

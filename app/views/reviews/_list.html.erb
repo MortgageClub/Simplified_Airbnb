@@ -30,7 +30,10 @@
     </div>
     <script type="text/javascript">
       $("#star_<%= review.id %>").raty({
-        path: "/system/images/",
+        starOff : '<%= image_path("star-off.png") %>',
+        starOn  : '<%= image_path("star-on.png") %>',
+        starHalf  : '<%= image_path("star-half.png") %>',
+        path: "",
         readOnly: true,
         score: <%= review.star %>
       });
