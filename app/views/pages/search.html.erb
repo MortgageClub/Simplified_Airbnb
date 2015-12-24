@@ -6,17 +6,17 @@
         function initalize(){
           var mapCanvas = document.getElementById('widget');
           var mapOptions = {
-            <% if @arrRooms.length > 0 %>
-              center: new google.maps.LatLng(<%= @arrRooms.first.latitude%>, <%= @arrRooms.first.longitude %>),
+            <% if @arr_rooms.length > 0 %>
+              center: new google.maps.LatLng(<%= @arr_rooms.first.latitude%>, <%= @arr_rooms.first.longitude %>),
             <% else %>
-              center: new google.maps.LatLng(10, 100),
+              center: new google.maps.LatLng(10.7901603,106.6972143),
             <% end %>
-            zoom: 14,
+            zoom: 15,
             mapTypeId: google.maps.MapTypeId.ROADMAP
           }
           var map = new google.maps.Map(mapCanvas, mapOptions);
 
-          <% @arrRooms.each do |room| %>
+          <% @arr_rooms.each do |room| %>
             var marker = new google.maps.Marker ({
               position: new google.maps.LatLng(<%= room.latitude%>, <%= room.longitude %>),
               title: '<%= room.listing_name %>'

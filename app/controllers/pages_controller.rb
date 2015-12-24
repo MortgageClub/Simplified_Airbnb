@@ -1,43 +1,54 @@
 class PagesController < ApplicationController
   def home
-    @rooms = Room.all
+    @rooms = Room.all.limit(3)
   end
 
   def search
-    if params[:search].present? && params[:search].strip != ""
-      session[:loc_search] = params[:search]
-    end
+    assign_session
+    assign_room_address
 
-    arrayResult = Array.new
+    @search = @rooms_address.ransack(params[:q])
+    @rooms = @search.result
+
+    @arr_rooms = @rooms.to_a
+    check_room_not_available
+  end
+
+  private
+
+  def assign_session
+    session[:loc_search] = params[:search] if params[:search].present? && params[:search].strip != ""
+  end
+
+  def assign_room_address
     if session[:loc_search] && session[:loc_search] != ""
       @rooms_address = Room.where(active: true).near(session[:loc_search], 5, order: "distance")
     else
       @rooms_address = Room.where(active: true).all
     end
+  end
 
-    @search = @rooms_address.ransack(params[:q])
-    @rooms = @search.result
+  def check_room_not_available
+    return unless params_valid?
 
-    @arrRooms = @rooms.to_a
+    start_date = Date.parse(params[:start_date])
+    end_date = Date.parse(params[:end_date])
 
-    if (params[:start_date] && params[:end_date] && !params[:start_date].empty? && !params[:end_date].empty?)
-      start_date = Date.parse(params[:start_date])
-      end_date = Date.parse(params[:end_date])
+    @rooms.each do |room|
+      not_available = room.reservations.where(
+        "(? <= start_date AND start_date <= ?)
+        OR (? <= end_date AND end_date <= ?)
+        OR (start_date < ? AND ? < end_date)",
+        start_date, end_date,
+        start_date, end_date,
+        start_date, end_date
+      ).limit(1)
 
-      @rooms.each do |room|
-        not_available =room.reservations.where(
-          "(? <= start_date AND start_date <= ?)
-          OR (? <= end_date AND end_date <= ?)
-          OR (start_date < ? AND ? < end_date)",
-          start_date, end_date,
-          start_date, end_date,
-          start_date, end_date
-        ).limit(1)
-
-        if not_available.length > 0
-          @arrRooms.delete(room)
-        end
-      end
+      @arr_rooms.delete(room) if not_available.length > 0
     end
+  end
+
+  def params_valid?
+    params[:start_date] && params[:end_date] && !params[:start_date].empty? && !params[:end_date].empty?
   end
 end

@@ -14,7 +14,10 @@
 
 <script>
   $("#user-stars").raty({
-    path: "/system/images/",
+    starOff : '<%= image_path("star-off.png") %>',
+    starOn  : '<%= image_path("star-on.png") %>',
+    starHalf  : '<%= image_path("star-half.png") %>',
+    path: "",
     scoreName: "review[star]",
     score: 1
   })

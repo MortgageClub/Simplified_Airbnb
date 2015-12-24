@@ -278,4 +278,32 @@ input[type="checkbox"]:checked:before {
   width: 560px;
 }
 
+.discovery-card {
+  background-size: cover;
+  background-position: center;
+  height: 326px;
+}
 
+.va-container {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.va-middle {
+  color: #fff;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+#ho-chi-minh {
+  background-image: url(asset-path('Ho_Chi_Minh.jpg'))
+}
+
+#ha-noi {
+  background-image: url(asset-path('Ha_Noi.jpg'))
+}
+
+#da-nang {
+  background-image: url(asset-path('Da_Nang.jpg'))
+}

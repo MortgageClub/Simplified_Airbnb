@@ -14,7 +14,59 @@
     </div>
   </div>
 <% end %>
+
 <br/>
+
+<div class="text-center">
+  <h2>Just for the weekend</h2>
+  <p>Discover new, inspiring places close to home.</p>
+</div>
+
+<div class="row">
+  <div class="col-md-4 col-sm-12">
+    <a href="http://localhost:3000/search?utf8=%E2%9C%93&search=ho+chi+minh">
+      <div class="discovery-card" id="ho-chi-minh">
+        <div class="va-container">
+          <div class="va-middle text-center">
+            <h2><strong>Ho Chi Minh</strong></h2>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-4 col-sm-6">
+    <a href="http://localhost:3000/search?utf8=%E2%9C%93&search=da+nang">
+      <div class="discovery-card" id="da-nang">
+        <div class="va-container">
+          <div class="va-middle text-center">
+            <h2><strong>Da Nang</strong></h2>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-4 col-sm-6">
+    <a href="http://localhost:3000/search?utf8=%E2%9C%93&search=ha+noi">
+      <div class="discovery-card" id="ha-noi">
+        <div class="va-container">
+          <div class="va-middle text-center">
+            <h2><strong>Ha Noi</strong></h2>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<br/>
+
+<div class="text-center">
+  <h2>Explore the world</h2>
+  <p>See what people are travelling, all around the world.</p>
+</div>
+
+<br/>
+
 <div class="row">
   <% @rooms.each do |room| %>
     <div class="col-md-4">
@@ -23,6 +75,7 @@
           <% image_tag room.photos.first.image.url(:medium) unless room.photos.empty? %>
         </div>
         <div class="panel-body">
+          <%= image_tag avatar_url(room.user), class: "img-circle avatar-small" %>&nbsp;
           <%= link_to room.listing_name, room %>
         </div>
       </div>
