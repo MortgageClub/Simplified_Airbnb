@@ -11,6 +11,9 @@
           <a class="navbar-brand" href="#">AirAlien</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
+          <%= form_tag search_path, class: "navbar-form navbar-left", method: :get do %>
+            <%= text_field_tag :search, params[:search], placeholder: "What are you going?", class: "form-control" %>
+          <% end %>
           <ul class="nav navbar-nav navbar-right">
             <% if (!user_signed_in?) %>
               <li><%= link_to "Log In", new_user_session_path %></li>
