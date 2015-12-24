@@ -1,4 +1,5 @@
 class Room < ActiveRecord::Base
+  include ActionView::Helpers
   belongs_to :user
   has_many :photos
   has_many :reservations, dependent: :destroy
@@ -18,7 +19,7 @@ class Room < ActiveRecord::Base
   validates :price, presence: true
 
   def show_image_first(type)
-    photos.empty? ? "/system/photos/default.jpg" : photos.first.image.url(type)
+    photos.empty? ? asset_path("default.jpg") : photos.first.image.url(type)
   end
 
   def average_rating
