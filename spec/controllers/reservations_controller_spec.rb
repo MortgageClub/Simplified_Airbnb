@@ -68,7 +68,7 @@ describe ReservationsController do
   end
 
   describe "POST #notify" do
-    let!(:reservation_notify) { FactoryGirl.create(:reservation, room: room)}
+    let!(:reservation_notify) { FactoryGirl.create(:reservation, room: room) }
     context "with status completed" do
       it "updates the reservation status" do
         post :notify, payment_status: "Completed", item_number: reservation_notify.id
