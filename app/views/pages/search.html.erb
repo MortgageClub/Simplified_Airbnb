@@ -22,6 +22,8 @@
           </div>
         </div>
 
+        <hr/>
+
         <div class="row">
           <div class="col-md-4">
             <%= check_box_tag "q[room_type_eq_any][]", "Entire" %> Entire Room
@@ -34,6 +36,8 @@
           </div>
         </div>
 
+        <hr/>
+
         <div class="row">
           <div class="col-md-4">
             <div class="form-group">
@@ -44,7 +48,7 @@
           <div class="col-md-4">
             <div class="form-group">
               <label>Bedrooms</label>
-              <%= f.select :bed_gteq, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]], prompt: "Select...", class: "form-control"  %>
+              <%= f.select :accommodate_gteq, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]], prompt: "Select...", class: "form-control"  %>
             </div>
           </div>
           <div class="col-md-4">
@@ -54,6 +58,8 @@
             </div>
           </div>
         </div>
+
+        <hr/>
 
         <div class="row">
           <div class="col-md-4">
@@ -73,10 +79,28 @@
           </div>
         </div>
 
+        <hr/>
+
         <div class="row">
           <%= f.submit "Search", class: "btn btn-primary" %>
         </div>
       <% end %>
+
+      <hr/>
+      <div class="row">
+        <% @rooms.each do |room| %>
+          <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading preview">
+                <% image_tag room.photos.first.image.url(:medium) unless room.photos.empty? %>
+              </div>
+              <div class="panel-body">
+                <%= link_to room.listing_name, room %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
