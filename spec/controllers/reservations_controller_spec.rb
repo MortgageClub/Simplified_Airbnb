@@ -50,9 +50,37 @@ describe ReservationsController do
       expect(assigns(:reservation).price).to eq(100)
     end
 
-    it "redirects to the room#show" do
+    it "redirects to the paypal" do
       post :create, room_id: room, reservation: attributes_for(:reservation, room_id: room.id, price: 100)
-      expect(response).to redirect_to assigns(:reservation).room
+      values = {
+        business: 'nhokjoy-facilitator@gmail.com',
+        cmd: '_xclick',
+        upload: 1,
+        notify_url: ENV["NOTIFY_URL"],
+        amount: assigns(:reservation).total,
+        item_name: assigns(:reservation).room.listing_name,
+        item_number: assigns(:reservation).id,
+        quantity: '1',
+        return: ENV["RETURN_URL"]
+      }
+      expect(response).to redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
+    end
+  end
+
+  describe "POST #notify" do
+    let!(:reservation_notify) { FactoryGirl.create(:reservation, room: room)}
+    context "with status completed" do
+      it "updates the reservation status" do
+        post :notify, payment_status: "Completed", item_number: reservation_notify.id
+        reservation_notify.reload
+        expect(reservation_notify.status).to eq(true)
+      end
+    end
+
+    context "with status not completed" do
+      it "destroys the reservation" do
+        expect { post :notify, payment_status: "Not Completed", item_number: reservation_notify.id }.to change(Reservation, :count).by(-1)
+      end
     end
   end
 

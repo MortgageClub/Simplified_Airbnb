@@ -8,5 +8,6 @@ FactoryGirl.define do
     end_date "2015-12-19 16:30:36"
     price 1
     total 1
+    status false
   end
 end
