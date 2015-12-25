@@ -36,9 +36,6 @@ Rails.application.configure do
   config.assets.digest = true
   config.paperclip_defaults = {
     storage: :s3,
-    s3_protocol: 'https',
-    url: ':s3_domain_url',
-    path: '/production/:class/:photos/:id_partition/:style/:filename',
     s3_credentials: {
       bucket: ENV['AWS_BUCKET_NAME'],
       access_key_id: ENV['AWS_ACCESS_KEY_ID'],
