@@ -12,10 +12,21 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.new(message_params)
     @messages = @conversation.messages.order("created_at DESC")
     @message.save
+
+    pusher_trigger
     respond_to :js
   end
 
   private
+
+  def pusher_trigger
+    other = sender? ? @conversation.recipient : @conversation.sender
+
+    Pusher[@conversation.id.to_s + other.id.to_s].trigger(
+      'greet',
+      content: @message.content, fullname: @message.user.fullname, time: @message.message_time
+    )
+  end
 
   def sender?
     current_user == @conversation.sender

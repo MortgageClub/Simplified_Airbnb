@@ -1,3 +1,4 @@
+require 'pusher'
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -46,6 +47,9 @@ Rails.application.configure do
     authentication: "plain"
   }
 
+  Pusher.app_id = '162928'
+  Pusher.key = '5ace9859d7fce2921c73'
+  Pusher.secret = 'edc4adb8183b456f7d0c'
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

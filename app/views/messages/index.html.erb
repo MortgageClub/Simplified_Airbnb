@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-3 text-center">
-    <%= image_tag avatar_url(@other), class: "img-circle avatar-medium" %>
+    <%= image_tag avatar_url(@other), class: "img-circle avatar-medium", id: "avatar-other" %>
     <br/>
     <strong>
       <%= @other.fullname %>
@@ -29,5 +29,28 @@
     <div id="chat">
       <%= render "messages" %>
     </div>
+    <script src="//js.pusher.com/3.0/pusher.min.js"></script>
+    <script>
+      // Enable pusher logging - don't include this in production
+      Pusher.log = function(message) {
+        if (window.console && window.console.log) {
+          window.console.log(message);
+        }
+      };
+
+      var pusher = new Pusher('<%= Pusher.key %>');
+      var channel = pusher.subscribe('<%= @conversation.id %><%= current_user.id %>');
+      channel.bind('greet', function(data) {
+        var html = "";
+        html += '<div class="panel">';
+        html += '<div class="panel-body">';
+        html += '<img class="img-circle avatar-small" src="' + $("#avatar-other").attr("src") + '" alt="Picture">'
+        html += '<strong>' + data.fullname + '</strong>';
+        html += '<span class="pull-right">' + data.time + '</span> <br>';
+        html += '<div class="row-space-2">' + data.content + '</div></div></div>';
+
+        $("#chat").prepend(html);
+      });
+    </script>
   </div>
 </div>

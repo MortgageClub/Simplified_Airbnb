@@ -19,6 +19,7 @@ gem 'geocoder'
 gem 'jquery-ui-rails'
 gem 'private_pub'
 gem 'thin'
+gem 'pusher'
 gem 'ransack'
 gem 'aws-sdk', '1.6.4'
 gem 'dotenv-rails', :groups => [:development, :test]
