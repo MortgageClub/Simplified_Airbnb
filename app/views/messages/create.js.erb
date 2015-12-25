@@ -1,7 +1,5 @@
 <% if @message.errors.empty? %>
-  <% publish_to conversation_messages_path(@conversation) do %>
-    $("#chat").html("<%= j render 'messages' %>");
-  <% end %>
+  $("#chat").html("<%= j render 'messages' %>");
 <% else %>
   var errors = "";
   <% @message.errors.full_messages.each do |message| %>
