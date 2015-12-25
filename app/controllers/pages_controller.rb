@@ -22,7 +22,7 @@ class PagesController < ApplicationController
 
   def assign_room_address
     if session[:loc_search].present?
-      @rooms_address = Room.where(active: true).near(session[:loc_search], 5, order: "distance")
+      @rooms_address = Room.where(active: true).near(session[:loc_search], 50, order: "distance")
     else
       @rooms_address = Room.where(active: true).all
     end
