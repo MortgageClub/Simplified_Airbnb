@@ -18,7 +18,7 @@
 
           <% @arr_rooms.each do |room| %>
             var marker = new google.maps.Marker ({
-              position: new google.maps.LatLng(<%= room.latitude%>, <%= room.longitude %>),
+              position: new google.maps.LatLng(<%= room.latitude %>, <%= room.longitude %>),
               title: '<%= room.listing_name %>'
             });
 
@@ -118,7 +118,7 @@
             <div class="col-md-4">
               <div class="panel panel-default">
                 <div class="panel-heading preview">
-                  <% image_tag room.photos.first.image.url(:medium) unless room.photos.empty? %>
+                  <%= image_tag room.photos.first.image.url(:medium) unless room.photos.empty? %>
                 </div>
                 <div class="panel-body">
                   <%= link_to room.listing_name, room %>

@@ -2,7 +2,7 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-md-12">
-        <%= image_tag @photos.first.image.url, class: "image-responsive" unless @photos.empty? %>
+        <%= image_tag @photos.first.image.url, class: "img-responsive", style:"width:100%" unless @photos.empty? %>
       </div>
     </div>
     <br/>
@@ -98,7 +98,7 @@
             <% if @photos %>
               <% @photos.each do |photo| %>
                 <div class="item <%= 'active' if photo.id == @photos.first.id %>">
-                <%= image_tag photo.image.url %>
+                  <%= image_tag photo.image.url, style:"width:100%" %>
                 </div>
               <% end %>
             <% end %>
