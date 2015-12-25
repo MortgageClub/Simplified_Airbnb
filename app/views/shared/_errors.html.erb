@@ -1,0 +1,8 @@
+<script type="text/javascript">
+  var htmlErrors = "<ol>";
+  <% errors.each do |error| %>
+    htmlErrors += "<li><%= error %></li>";
+  <% end %>
+  htmlErrors += "</ol>";
+  toastr.error(htmlErrors);
+</script>

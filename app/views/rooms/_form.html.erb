@@ -5,6 +5,9 @@
   <div class="panel-body">
     <div class="container">
       <%= form_for @room, html: {multipart: true} do |f| %>
+        <% if @room.errors.any? %>
+          <%= render partial: 'shared/errors', locals: { errors: @room.errors.full_messages } %>
+        <% end %>
         <div class="row">
           <div class="col-md-4 select">
             <div class="form-group">
