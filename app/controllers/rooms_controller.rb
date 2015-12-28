@@ -20,7 +20,7 @@ class RoomsController < ApplicationController
 
   def create
     @room = current_user.rooms.build(room_params)
-    return render :new unless @room.save
+    return render :new, alert: "abc" unless @room.save
 
     insert_images_to_room if params[:images]
     @photos = @room.photos
